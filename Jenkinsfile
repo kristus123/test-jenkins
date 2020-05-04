@@ -1,6 +1,8 @@
 pipeline {
-    agent { dockerfile true }
-    stages {
+    agent { any }
+    stages {	
+    	agent { dockerfile true }
+
 
         stage('test') {
             steps {
@@ -9,6 +11,7 @@ pipeline {
         }
 
         stage('deploy') {
+        	
             steps {
             	sh 'echo starting build'
                 sh 'docker build -t sweet-api .'
