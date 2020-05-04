@@ -20,7 +20,7 @@ pipeline {
                 	try {
 						sh 'stopping current container'
 						sh 'docker kill $(docker ps -a -q  --filter ancestor=sweet-api)'
-	            	} catch (Exception e) {
+	            	} catch (all) {
 	                	sh 'did not find image'
 	            	}
                 }
