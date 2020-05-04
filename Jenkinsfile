@@ -1,11 +1,6 @@
 pipeline {
     agent { dockerfile true }
     stages {
-        stage('build') {
-            steps {
-                sh 'python --version'
-            }
-        }
 
         stage('test') {
             steps {
@@ -14,6 +9,7 @@ pipeline {
         }
 
         stage('deploy') {
+        	agent {any}
             steps {
                 sh 'docker build -t sweet-api .'
                 sh 'docker run -d -p 5000:80 sweet-api'
