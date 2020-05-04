@@ -9,8 +9,6 @@ pipeline {
         }
 
         stage('deploy') {
-        	agent any
-
             steps {
             	sh 'echo starting build'
                 sh 'docker build -t sweet-api .'
