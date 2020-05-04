@@ -1,10 +1,25 @@
 pipeline {
-    agent { docker { image 'python:3.5.1' } }
+    agent { dockerfile true }
     stages {
         stage('build') {
             steps {
                 sh 'python --version'
-                sh 'echo anal'
+            }
+        }
+
+        stage('test') {
+            steps {
+                sh 'pytest'
+            }
+        }
+
+        stage('deploy') {
+        	agent none
+
+            steps {
+            	sh 'docker kill sweet-api'
+                sh 'docker build -t sweet-api .'
+                sh 'docker run -d -p 5000:80 sweet-api'
             }
         }
     }
