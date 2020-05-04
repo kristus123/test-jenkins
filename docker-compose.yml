@@ -1,0 +1,6 @@
+version: '3'
+services:
+  sweet-api:
+    build: .
+    ports:
+      - "5000:80"
